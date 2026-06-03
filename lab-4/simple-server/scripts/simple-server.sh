@@ -1,15 +1,5 @@
 #!/bin/sh
 
-readonly MESSAGE_PATH="/etc/simple-server/message.md"
-
-get_content() {
-  [ -f "${MESSAGE_PATH}" ] || {
-    echo "$SERVER_MSG"
-    exit 0
-  }
-  cat "${MESSAGE_PATH}"
-}
-
 main() {
   set -eu
 
@@ -18,8 +8,8 @@ main() {
   SERVER_MSG="$(snapctl get daemon.msg)"
 
   while :; do
-    echo "ncat started on '${SERVER_HOST}:${SERVER_PORT}'"
-    get_content | ncat -4 --listen --send-only "${SERVER_HOST}" "${SERVER_PORT}"
+    echo "ncat started on '${SERVER_HOST}:${SERVER_PORT}', with message '${SERVER_MSG}'"
+    echo "${SERVER_MSG}" | ncat -4 --listen --send-only "${SERVER_HOST}" "${SERVER_PORT}"
   done
 }
 

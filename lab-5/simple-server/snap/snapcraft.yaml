@@ -15,6 +15,7 @@ layout:
 plugs:
   server-content:
     interface: content
+    content: server-content
     target: $SNAP/static
 
 parts:
