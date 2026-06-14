@@ -1,0 +1,19 @@
+# Snapcraft build directories (generated when building, e.g. --destructive-mode)
+parts/
+stage/
+prime/
+
+# Built and unpacked snaps — never commit these to the course repo
+*.snap
+squashfs-root/
+
+# Build environment
+.env
+
+# Students initialise their own local git repo inside a lab directory for the
+# git-versioning exercise (Lab 6). That nested repo must never be committed here.
+*/simple-server/.git/
+*/*/.git/
+
+# Snapcraft logs
+*.log
